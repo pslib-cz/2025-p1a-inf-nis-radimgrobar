@@ -1,19 +1,48 @@
-# Projekt NIS: DobaKeřová
+# Informační systém DobaKeřová 
 
-## Téma projektu
-**Název systému:** DobaKeřová
-**Co to je:** Jednoduchý a přehledný webový systém pro lidi, co spolu zahradničí ve sdílených komunitních zahradách.
 
-## Koncept
-Městské zahradničení a sdílené zahrady jsou teď hodně populární. Lidé se dají dohromady, pronajmou si kousek půdy a společně pěstují zeleninu nebo ovoce. Problém ale je, že organizovat takovou zahradu bývá docela chaos. Lidé se domlouvají přes Facebook, tabulky v Excelu nebo přes papírové nástěnky přímo na zahradě, takže se důležité informace snadno ztratí.
+Vítejte v repozitáři pro komunitní zahrádkářský informační systém **DobaKeřová** který vám usnadní život. Tento projekt byl kompletně navržen a zdokumentován v rámci školního projektu analýzy a návrhu NIS (Nového Informačního Systému)
+---
+## Cíl projektu
 
-Projekt **DobaKeřová** tohle všechno spojí na jedno přehledné místo. Pomůže lidem v komunitě domlouvat se na brigádách, půjčovat si nářadí a sledovat, kdo má jaký záhon zrovna pronajatý. Celé to bude postavené tak, aby si systém pamatoval historii (například co na kterém záhonu rostlo minulý rok) a dokázal s těmito informacemi dál pracovat.
+Hlavním cílem tohoto projektu bylo vypracovat kompletní analytický a architekturní návrh systému před samotným zahájením vývoje. Záměrem bylo čistě analyticky definovat byznys logiku, datové toky, uživatelské role a technologické zázemí aplikace. Součástí zadání nebylo psaní samotného zdrojového kódu ani implementace systému, ale vytvoření jednoznačné, přehledné a technicky správné blueprint dokumentace, která by sloužila jako závazný podklad pro vývojový tým.
+## Rozcestník dokumentace
 
-### Co všechno bude systém umět a řešit:
-1. **Rozdělení uživatelů podle rolí:** Každý bude mít svůj účet. Běžný zahradník uvidí svoje záhony, správce zahrady bude schvalovat nové členy a akce, a pokladník bude mít přehled o platbách za pronájmy.
-2. **Přehled a pronájem záhonů:** Evidence všech záhonů – jak jsou velké, jaká je v nich hlína, jestli jsou volné a kolik stojí jejich pronájem na sezónu.
-3. **Plánování brigád a bodování:** Správce může vypsat společnou akci (např. „Oprava plotu“ nebo „Sázení stromků“). Lidé se na ni přihlásí, systém zaznamená, kdo přišel pomoct, a připíše jim „kredity za aktivitu“. Ty pak mohou zahradníci využít jako výhodu (třeba při výběru lepšího záhonu na další rok).
-4. **Chytré rady a hlídání věcí:** Systém pohlídá, aby si dva lidé nerezervovali stejnou komunitní sekačku ve stejný čas. Navíc podle historie záhonu dokáže poradit, co zasadit (např. *„Tady byla tři roky po sobě rajčata, půda je vyčerpaná. Zkus letos raději luštěniny.“*).
-5. **Sousedský bazar:** Jednoduché tržiště, kde si mohou zahradníci mezi sebou vyměnit přebytky úrody, semínka nebo sazenice (např. *„Mám moc dýní, vyměním za saláty“*).
+Pro maximální přehlednost je projekt rozdělen do samostatných logických celků. Kliknutím na níže uvedené odkazy se dostanete k příslušné části specifikace:
 
-Tento text je základní představení celého nápadu. V dalších týdnech k němu vypracuji podrobný seznam funkcí a diagramy, které ukážou, jak bude celý systém vnitřně fungovat.
+*  **[Koncept projektu a téma](KONCEPT.md)** – Původní záměr, představení vize komunitní zahrady a rozdělení uživatelských rolí odevzdaný k termínu 27. 5.
+*  **[Katalog požadavků](POZADAVKY.md)** – Kompletně zpracovaný katalog funkčních a nefunkčních požadavků (F-01 až F-14) odevzdaný k termínu 3. 6.
+
+---
+
+## 📊 Analytické a architekturní UML diagramy
+
+Níže naleznete finální grafické návrhy struktury a chování systému, které plně pokrývají zadání projektu. Všechny diagramy jsou v repozitáři uloženy ve složce `diagramy/`.
+
+### 1. Diagram případů užití (Use Case)
+Definuje hranice systému a ukazuje, jaké akce mohou jednotliví aktéři (*Zahrádkář*, *Správce*, *Pokladník*) v systému provádět. Zachycuje také byznys vztah, kde zaznamenání platby rozšiřuje (`<<extend>>`) samotnou rezervaci záhonu.
+--> **[Zobrazit zdrojový diagram](diagramy/UseCase.drawio.png)**
+
+---
+
+### 2. Diagram tříd (Class Diagram)
+Představuje statickou datovou strukturu systému, definuje jednotlivé entity (`Uzivatel`, `Zahon`, `Naradi`, etc.), jejich atributy, datové typy, metody a vzájemné multiplicity. Slouží jako přímý podklad pro tvorbu databáze.
+--> **[Zobrazit zdrojový diagram](diagramy/TřídovýDiagram.drawio.png)**
+
+---
+
+### 3. Sekvenční diagram (Sequence Diagram)
+Zachycuje dynamické chování systému v čase při klíčovém procesu **Rezervace nářadí**. Detailně vizualizuje volání metod mezi uživatelským rozhraním a backendovými objekty včetně logického bloku `alt` pro řešení kolizí termínů.
+--> **[Zobrazit zdrojový diagram](diagramy/SekvenčníDiagram.drawio.png)**
+
+---
+
+### 4. Diagram nasazení a technologií (Deployment)
+Zobrazuje fyzickou a technologickou architekturu systému rozdělenou do tří vrstev podle standardů moderních webových aplikací: *Uživatel (Frontend v prohlížeči)* $\rightarrow$ *Backend Server (Cloudová aplikační logika)* $\rightarrow$ *Databázový Server (PostgreSQL/MySQL)*.
+--> **[Zobrazit zdrojový diagram](diagramy/TechnologieANasazení.drawio.png)**
+
+---
+
+## Závěr
+
+Projekt je úspěšně dokončen a odevzdán v plném rozsahu k finálnímu termínu **10. 6.** Všechny milníky (Koncept, Katalog požadavků i kompletní sada 4 diagramů) byly splněny a zvládnuty. Celkově jsem s prací spokojen, doufám že se bude líbit a budu rád za jakoukoliv zpětnou vazbu. **Toď vše**.
