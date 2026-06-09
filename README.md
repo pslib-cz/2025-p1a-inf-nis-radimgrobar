@@ -15,7 +15,7 @@ Pro maximální přehlednost je projekt rozdělen do samostatných logických ce
 
 ---
 
-## 📊 Analytické a architekturní UML diagramy
+## Analytické a architekturní UML diagramy
 
 Níže naleznete finální grafické návrhy struktury a chování systému, které plně pokrývají zadání projektu. Všechny diagramy jsou v repozitáři uloženy ve složce `diagramy/`.
 
